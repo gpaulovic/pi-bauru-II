@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com -->
-    <title>Bootstrap Theme Company Page</title>
+    <title>Descartadores</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -44,7 +44,7 @@
     <div id="conteudo-right">
         <div class="Container_Descartadores" style="margin: 20px">
             <h1>Gestão de Descartadores</h1>
-            <form action="{% url 'save-descartadores' %}" method="POST">
+            <form id="descartadores-save-form">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="nome" class="col-2 col-form-label">Nome</label>
@@ -91,28 +91,12 @@
                 </tr>
 
                 </thead>
-                {% for descartador in descartadores %}
-                    <tbody>
-                    <tr>
-                        <td>{{ descartador.nome }}</td>
-                        <td> {{ descartador.documento }} </td>
-                        <td>{{ descartador.email }}</td>
-                        <td>{{ descartador.endereco }}</td>
-                        <td>
-                            <a href="{% url 'editar-descartadores' descartador.documento %}"
-                               class="glyphicon glyphicon-edit"></a>
-                        </td>
-                        <td>
-                            <a href="{% url 'delete-descartadores' descartador.documento %}"
-                               class="glyphicon glyphicon-trash"></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                {% endfor %}
+                <tbody id="descartadores-table-body">
+                </tbody>
             </table>
         </div>
     </div>
 </div>
-
 </body>
+<script src="../../static/descartador.js"></script>
 </html>

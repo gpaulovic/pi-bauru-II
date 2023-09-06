@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import UsuariosForm
 from .models import Usuarios
 
 
+@login_required
 def home(request):
     user = request.user.username
     vusuarios = Usuarios.objects.all()
@@ -33,7 +35,7 @@ def update(request, id):
         if form.is_valid():
             usuario = Usuarios.objects.get(id=id)
             usuario.nome = form.data.get("nome")
-            usuario.email = form.data.get("email")
+            usuario.nome = form.data.get("email")
             usuario.cargo = form.data.get("cargo")
             usuario.cpf = form.data.get("cpf")
             usuario.ecoponto = form.data.get("ecoponto")

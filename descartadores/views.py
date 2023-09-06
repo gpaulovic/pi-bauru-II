@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
@@ -30,6 +31,7 @@ def get(request, documento):
 
 
 # redirect function
+@login_required
 def home(request):
     user = request.user.username
     vdescartadores = Descartadores.objects.all()
@@ -63,8 +65,9 @@ def update(request, documento, *args, **kwargs):
 
 # redirect function
 def editar(request, documento):
+    user = request.user.username
     vdescartador = Descartadores.objects.get(documento=documento)
-    return render(request, "descartadores-update.html", {"descartador": vdescartador})
+    return render(request, "descartadores-update.html", {"descartador": vdescartador, "username": user})
 
 
 @api_view(['GET', 'DELETE'])

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com -->
-    <title>Bootstrap Theme Company Page</title>
+    <title>Edição do Descarte</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -44,27 +44,24 @@
     <div id="conteudo-right">
         <div class="Container_Descartadores" style="margin: 20px">
             <h1>Edição Descartes</h1>
-            <form action="{% url 'update-descartes' descartes.id %}" method="POST">
+            <form id="descarte-update-form" data-id="{{ descartes.id }}">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="nome" class="col-2 col-form-label">Nome</label>
                     <div class="col-10">
-                        <input id="nome" name="nome" placeholder="Nome" type="text" required="required"
-                               class="form-control">
+                        <input id="nome" name="nome" placeholder="Nome" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tipo" class="col-2 col-form-label">Tipo</label>
                     <div class="col-10">
-                        <input id="tipo" name="tipo" placeholder="Tipo" type="text" required="required"
-                               class="form-control">
+                        <input id="tipo" name="tipo" placeholder="Tipo" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="quantidade" class="col-2 col-form-label">Quantidade</label>
                     <div class="col-10">
                         <input id="quantidade" name="quantidade" placeholder="Quantidade" type="text"
-                               required="required"
                                class="form-control">
                     </div>
                 </div>
@@ -72,21 +69,18 @@
                     <label for="descartador_documento" class="col-2 col-form-label">Descartador</label>
                     <div class="col-10">
                         <input id="descartador_documento" name="descartador_documento"
-                               placeholder="Descartador documento" type="text"
-                               required="required"
-                               class="form-control">
+                               placeholder="Descartador documento" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="ecoponto" class="col-2 col-form-label">Ecoponto</label>
                     <div class="col-10">
-                        <input id="ecoponto" name="ecoponto" placeholder="Ecoponto" type="text" required="required"
-                               class="form-control">
+                        <input id="ecoponto" name="ecoponto" placeholder="Ecoponto" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="offset-2 col-10">
-                        <button name="submit" type="submit" class="btn btn-primary">Salvar</button>
+                        <button id="updateButton" name="submit" type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </div>
             </form>
@@ -95,4 +89,6 @@
 </div>
 
 </body>
+<script src="../../static/descarte-update.js">
+</script>
 </html>

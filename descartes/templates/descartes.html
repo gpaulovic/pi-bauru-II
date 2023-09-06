@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com -->
-    <title>Bootstrap Theme Company Page</title>
+    <title>Descartes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -44,7 +44,7 @@
     <div id="conteudo-right">
         <div class="Container_Descartes" style="margin: 20px">
             <h1>Gestão de Descartes</h1>
-            <form action="{% url 'save-descartes' %}" method="POST">
+            <form id="descartes-save-form">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="nome" class="col-2 col-form-label">Nome</label>
@@ -100,29 +100,13 @@
                     <th>ECOPONTO</th>
                 </tr>
                 </thead>
-                {% for descarte in descartes %}
-                    <tbody>
-                    <tr>
-                        <td>{{ descarte.id }}</td>
-                        <td>{{ descarte.nome }}</td>
-                        <td> {{ descarte.tipo }} </td>
-                        <td>{{ descarte.quantidade }}</td>
-                        <td>{{ descarte.descartador.documento }}</td>
-                        <td>{{ descarte.ecoponto.id }}</td>
-                        <td>
-                            <a href="{% url 'editar-descartes' descarte.id %}" class="glyphicon glyphicon-edit"></a>
-                        </td>
-                        <td>
-                            <a href="{% url 'delete-descartes' descarte.id %}"
-                               class="glyphicon glyphicon-trash"></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                {% endfor %}
+                <tbody id="descartes-table-body">
+                </tbody>
             </table>
-            <!--*****Edição Ecopontos************************************************************************************-->
         </div>
     </div>
 </div>
 </body>
+<script src="../../static/descarte.js">
+</script>
 </html>

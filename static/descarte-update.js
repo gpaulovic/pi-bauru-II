@@ -1,12 +1,12 @@
-const descartadoresHomeURL = '/descartadores/'
+const descartesHomeURL = '/descartes/'
 document.addEventListener('DOMContentLoaded', function () {
-    const updateForm = document.getElementById('descartador-update-form');
+    const updateForm = document.getElementById('descarte-update-form');
 
     updateForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const formData = new FormData(updateForm);
-        const descartadorDocumento = updateForm.getAttribute('data-document')
+        const descarteId = updateForm.getAttribute('data-id')
 
         let hasDataToSubmit = false;
         for (const value of formData.values()) {
@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        if (!formData.get('documento')){
-            formData.set('documento',descartadorDocumento)
+        if (!formData.get('id')){
+            formData.set('id',descarteId)
         }
 
         console.log(formData)
-        fetch(`/descartadores/update/${descartadorDocumento}`, {
+        fetch(`/descartes/update/${descarteId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => {
                 if (response.ok) {
                     alert('Dados atualizados com sucesso!');
-                    window.location.href = descartadoresHomeURL;
+                    window.location.href = descartesHomeURL;
                 } else {
                     throw new Error('Erro ao atualizar dados.');
                 }

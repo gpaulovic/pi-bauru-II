@@ -6,6 +6,3 @@ class Descartadores(models.Model):
     documento = models.IntegerField(primary_key=True)
     email = models.CharField(default='-', max_length=30)
     endereco = models.CharField(default='-', max_length=30)
-
-    def __str__(self):
-        return self.nome

@@ -1,48 +1,45 @@
-function fetchAndDisplayDescartes() {
-    const descartesTableBody = document.getElementById('descartes-table-body');
+function fetchAndDisplayEcopontos() {
+    const ecopontosTableBody = document.getElementById('ecopontos-table-body');
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/descartes/get/', true);
+    xhr.open('GET', '/ecopontos/get/', true);
 
     xhr.onload = function () {
         if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
-            descartesTableBody.innerHTML = '';
+            ecopontosTableBody.innerHTML = '';
 
-            data.forEach(descarte => {
+            data.forEach(ecoponto => {
                 const row = document.createElement('tr');
                 const idCell = document.createElement('td');
-                const nomeCell = document.createElement('td');
-                const tipoCell = document.createElement('td');
-                const quantidadeCell = document.createElement('td');
-                const descartadorCell = document.createElement('td');
-                const ecopontoCell = document.createElement('td');
+                const cepCell = document.createElement('td');
+                const bairroCell = document.createElement('td');
+                const enderecoCell = document.createElement('td');
+                const situacaoCell = document.createElement('td');
                 const editCell = document.createElement('td');
                 const deleteCell = document.createElement('td');
 
-                const editLink = createLink(`editar/${descarte.id}`, 'glyphicon glyphicon-edit')
-                const deleteLink = createLink(`delete-confirm/${descarte.id}`, 'glyphicon glyphicon-trash',)
+                const editLink = createLink(`editar/${ecoponto.id}`, 'glyphicon glyphicon-edit')
+                const deleteLink = createLink(`delete-confirm/${ecoponto.id}`, 'glyphicon glyphicon-trash',)
 
-                idCell.textContent = descarte.id;
-                nomeCell.textContent = descarte.nome;
-                tipoCell.textContent = descarte.tipo;
-                quantidadeCell.textContent = descarte.quantidade;
-                descartadorCell.textContent = descarte.descartador;
-                ecopontoCell.textContent = descarte.ecoponto;
+                idCell.textContent = ecoponto.id;
+                cepCell.textContent = ecoponto.cep;
+                bairroCell.textContent = ecoponto.bairro;
+                enderecoCell.textContent = ecoponto.endereco;
+                situacaoCell.textContent = ecoponto.situacao;
 
                 editCell.appendChild(editLink)
                 deleteCell.appendChild(deleteLink)
 
                 row.appendChild(idCell);
-                row.appendChild(nomeCell);
-                row.appendChild(tipoCell);
-                row.appendChild(quantidadeCell);
-                row.appendChild(descartadorCell);
-                row.appendChild(ecopontoCell);
+                row.appendChild(cepCell);
+                row.appendChild(bairroCell);
+                row.appendChild(enderecoCell);
+                row.appendChild(situacaoCell);
                 row.appendChild(editCell);
                 row.appendChild(deleteCell);
 
-                descartesTableBody.appendChild(row);
+                ecopontosTableBody.appendChild(row);
             });
         } else {
             console.error('Houve um erro ao buscar os dados da API:', xhr.status);
@@ -68,16 +65,16 @@ function createLink(href, classe, id) {
     return link;
 }
 
-fetchAndDisplayDescartes();
+fetchAndDisplayEcopontos();
 
 function saveForm(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    event.preventDefault();
 
-    const form = document.getElementById('descartes-save-form');
+    const form = document.getElementById('ecopontos-save-form');
     const formData = new FormData(form);
     const cookie =  getCookie('csrftoken')
 
-    fetch('/descartes/save/', {
+    fetch('/ecopontos/save/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -98,7 +95,7 @@ function saveForm(event) {
         });
 }
 
-const form = document.getElementById('descartes-save-form');
+const form = document.getElementById('ecopontos-save-form');
 form.addEventListener('submit', saveForm);
 
 function getCookie(name) {

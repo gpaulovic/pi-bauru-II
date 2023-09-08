@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com -->
+    <title>Confirmar exclusão de Ecoponto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../../static/style.css">
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<div id="header">
+    <div id="Avatar_Container" class="thumb">
+        <img src="{% static 'ecopontos/img/Avatar_Rosto.png' %}" id="Avatar_Rosto">
+    </div>
+
+    <div id="Nome_do_Usuario">
+        <h1 id="ola">Olá, {{ username }}</h1>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="conteudo-left">
+    <div class="container" id="conteudo-left">
+        <div class="navbar-header">
+            <img class="navbar-brand" src="{% static 'ecopontos/img/Logo_EcoPonto.JPG' %}" id="Logo_EcoPonto">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="{% url 'home-ecopontos' %}">ECOPONTOS</a></li>
+                <li><a href="{% url 'home-usuarios' %}">USUARIOS</a></li>
+                <li><a href="{% url 'home-descartadores' %}">DESCARTADORES</a></li>
+                <li><a href="{% url 'home-descartes' %}">DESCARTES</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="container1">
+    <div id="conteudo-right">
+        <div class="Container_Ecoponto" style="margin: 20px">
+            <h1>Confirmar exclusão de Ecoponto</h1>
+            <div id="delete">
+                {% csrf_token %}
+                <label for="ecopontoId" id="ecopontoId"> Número identificador do Ecoponto: {{ ecoponto.id }}</label>
+                <label for="ecopontoEndereco" id="endereco"> Endereço do Ecoponto: {{ ecoponto.endereco }}</label>
+                <label for="ecopontoSituacao" id="situacao"> Situação do Ecoponto: {{ ecoponto.situacao }}</label>
+                <div class="offset-2 col-10">
+                    <button id="deleteButton" class="btn btn-danger" type="submit" data-document="{{ ecoponto.id }}">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../static/ecoponto-delete.js">
+</script>
+</html>

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from rest_framework.authtoken.views import ObtainAuthToken
+
 from core.views import home, user_register, user_login, page_register, logout_view
 
 urlpatterns = [
@@ -14,5 +16,6 @@ urlpatterns = [
     path('ecopontos/', include('ecopontos.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('descartadores/', include('descartadores.urls')),
-    path('descartes/', include('descartes.urls'))
+    path('descartes/', include('descartes.urls')),
+    path('api-token-auth/', ObtainAuthToken.as_view(), name='api_token_auth'),
 ]

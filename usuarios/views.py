@@ -28,7 +28,7 @@ def getAll(request):
 def get(request, id):
     try:
         usuario = Usuarios.objects.get(id=id)
-        serializer = UsuariosSerializer(usuario, many=True)
+        serializer = UsuariosSerializer(usuario)
         return Response(serializer.data)
     except Usuarios.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)

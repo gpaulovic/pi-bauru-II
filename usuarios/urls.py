@@ -3,7 +3,7 @@ from .views import home, save, editar, update, delete, getAll, get, deleteConfir
 
 urlpatterns = [
     path('', home, name="home-usuarios"),
-    path('get/', getAll, name="get-all-usarios"),
+    path('get/', getAll, name="get-all-usuarios"),
     path('get/<int:id>', get, name="get-usuarios"),
     path('save/', save, name="save-usuarios"),
     path('editar/<int:id>', editar, name="editar-usuarios"),

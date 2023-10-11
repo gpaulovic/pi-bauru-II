@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from rest_framework.authtoken.views import ObtainAuthToken
 
-from core.views import home, user_register, user_login, page_register, logout_view
+from core.views import home, user_login, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,8 +11,6 @@ urlpatterns = [
     path('login/verify', user_login, name="user_login_verify"),
     path('logout/', logout_view, name='logout'),
     path('', home),
-    path('registro/', page_register, name="page_register"),
-    path('registro/save', user_register, name="user_register"),
     path('ecopontos/', include('ecopontos.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('descartadores/', include('descartadores.urls')),

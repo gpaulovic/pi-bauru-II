@@ -17,12 +17,6 @@
 
 <body class="text-center">
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
-{% endif %}
-
 <form class="form-signin" method="post" action="{% url 'user_login_verify' %}?next={{ request.GET.next }}">
     {% csrf_token %}
     <img src="{% static 'ecopontos/img/Logo_EcoPonto.JPG' %}" id="Logo_EcoPonto">
@@ -32,6 +26,18 @@
     <label for="inputPassword" class="sr-only">Senha</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Senha">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger" id="alerta">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
 </form>
 </body>
 </html>
+<script>
+    function exibirMensagemAlerta() {
+        var alerta = document.getElementById("alerta");
+        alerta.style.display = "block"; // Exibe a mensagem de aviso
+    }
+</script>
